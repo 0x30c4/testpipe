@@ -23,21 +23,21 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Use ssh-agent to manage the SSH connection
-                sshagent(['ppe']) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ppe', keyFileVariable: 'PK')]) {
                     // Stop the existing app on the remote server if running
                     sh '''
-                    ssh -P 61234 ${REMOTE_USER}@${REMOTE_HOST} << EOF
+                    ssh -i $PK -P 61234 ${REMOTE_USER}@${REMOTE_HOST} << EOF
                         pkill -f myapp || true
                         exit
                     EOF
                     '''
 
                     // Copy the built binary to the remote server
-                    sh 'scp -P 61234 myapp ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}'
+                    sh 'scp -i $PK -P 61234 myapp ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}'
 
                     // Start the app on the remote server
                     sh '''
-                    ssh -P 61234 ${REMOTE_USER}@${REMOTE_HOST} << EOF
+                    ssh -i $PK -P 61234 ${REMOTE_USER}@${REMOTE_HOST} << EOF
                         cd ${REMOTE_PATH}
                         nohup ./myapp > app.log 2>&1 &
                         exit
