@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-      REMOTE_USER = 'root'  // Replace with your remote server's username
-      REMOTE_HOST = '123.49.62.187'  // Replace with your remote server's IP
-      REMOTE_PATH = '/tmp/'  // Replace with your deployment directory on the remote server
-    }
-
     stages {
         stage('Checkout') {
           steps {
