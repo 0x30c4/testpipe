@@ -32,6 +32,7 @@ pipeline {
                     EOF
                     '''
 
+                    sh 'echo $PK'
                     // Copy the built binary to the remote server
                     sh 'scp -i $PK -P 61234 -o StrictHostKeyChecking=no myapp ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}'
 
