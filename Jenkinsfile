@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        REMOTE_USER = 'root'  // Replace with your remote server's username
+        REMOTE_HOST = '123.49.62.187'  // Replace with your remote server's IP
+        REMOTE_PATH = '/tmp/'  // Replace with your deployment directory on the remote server
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -16,25 +22,28 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Stop the existing app on the remote server if running
-                sh '''
-                ssh root@123.49.62.187 << EOF
-                    pkill -f myapp || true
-                    exit
-                EOF
-                '''
+                // Use ssh-agent to manage the SSH connection
+                sshagent(['remote-server-ssh']) {
+                    // Stop the existing app on the remote server if running
+                    sh '''
+                    ssh -P 61234 ${REMOTE_USER}@${REMOTE_HOST} << EOF
+                        pkill -f myapp || true
+                        exit
+                    EOF
+                    '''
 
-                // Copy the built binary to the remote server
-                sh 'scp myapp root@123.49.62.187:/tmp/'
+                    // Copy the built binary to the remote server
+                    sh 'scp -P 61234 myapp ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}'
 
-                // Start the app on the remote server
-                sh '''
-                ssh root@123.49.62.187 << EOF
-                    cd /tmp
-                    nohup ./myapp > app.log 2>&1 &
-                    exit
-                EOF
-                '''
+                    // Start the app on the remote server
+                    sh '''
+                    ssh -P 61234 ${REMOTE_USER}@${REMOTE_HOST} << EOF
+                        cd ${REMOTE_PATH}
+                        nohup ./myapp > app.log 2>&1 &
+                        exit
+                    EOF
+                    '''
+                }
             }
         }
     }
