@@ -10,6 +10,6 @@ func main() {
     fmt.Fprintf(w, "Hello, World!")
   })
 
-  fmt.Println("Server is running on port 1212...")
+  fmt.Println("Server is running on port 8080...")
   http.ListenAndServe(":1212", nil)
 }
