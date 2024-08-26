@@ -22,7 +22,7 @@ pipeline {
 
         stage('Deploy') {
           steps {
-            nohup ./myapp > app.log 2>&1 &
+            sh 'nohup ./myapp > app.log 2>&1 &'
           }
         }
       }
