@@ -26,7 +26,14 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ppe', keyFileVariable: 'PK')]) {
                     // Stop the existing app on the remote server if running
 
-                    sh 'echo $PK | base64 '
+                    sh 'ssh-add - <"$PK"'
+
+                    sh '''
+                    ssh -p 61234 -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << EOF
+                      ls -R
+                    EOF
+                    '''
+
                     sh '''
                     ssh -i $PK -p 61234 -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << EOF
                         pkill -f myapp || true
