@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Use ssh-agent to manage the SSH connection
-                sshagent(['remote-server-ssh']) {
+                sshagent(['6076615c-00af-458e-9a47-473d369f7450']) {
                     // Stop the existing app on the remote server if running
                     sh '''
                     ssh -P 61234 ${REMOTE_USER}@${REMOTE_HOST} << EOF
