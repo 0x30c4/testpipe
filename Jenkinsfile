@@ -22,18 +22,7 @@ pipeline {
 
         stage('Deploy') {
           steps {
-            // SSH into the remote server and deploy the application
-            sshCommand remote: [
-              user: REMOTE_USER,
-              host: REMOTE_HOST,
-              credentialsId: 'ppe',
-              trustUnknownHosts: true
-            ], command: '''
-              pkill -f myapp || true
-              scp myapp ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}
-              cd ${REMOTE_PATH}
-              nohup ./myapp > app.log 2>&1 &
-            '''
+
           }
         }
       }
