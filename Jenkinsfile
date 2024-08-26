@@ -1,3 +1,8 @@
+def remote = [:]
+remote.name = "node-1"
+remote.host = "123.49.62.187"
+remote.allowAnyHosts = true
+
 pipeline {
     agent any
 
@@ -23,10 +28,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Use ssh-agent to manage the SSH connection
-                withCredentials([sshUserPrivateKey(credentialsId: 'ppe', keyFileVariable: 'PK')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ppe', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'root')]) {
                     // Stop the existing app on the remote server if running
+                    remote.user = userName
+                    remote.identityFile = identity
 
-                    sh 'chmod 600 $PK'
+                    sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; done'
 
                     sh '''
                     ssh -p 61234 -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << EOF
