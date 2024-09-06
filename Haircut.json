@@ -1,0 +1,2111 @@
+{
+	"info": {
+		"_postman_id": "83394d8c-4c8d-40e3-87d1-a9baa31c9280",
+		"name": "Haircut Store API",
+		"description": "Collection for Haircut Store API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25974139"
+	},
+	"item": [
+		{
+			"name": "Service",
+			"item": [
+				{
+					"name": "Service List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/service",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"service"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "- SQL Injection\n    \n- Error Handling (Information Disclosure)\n    \n- Lack of Input Validation/Sanitization\n    \n- Command Injection"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Service ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Head Massage\",\r\n    \"duration\":45,\r\n    \"price\":\"50.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/addservice",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"addservice"
+							]
+						},
+						"description": "- **SQL Injection**\n    \n- **Cross-Site Scripting (XSS)**\n    \n- **Insecure Direct Object References (IDOR)**\n    \n- **Improper Error Handling**\n    \n- **Insecure Data Storage**\n    \n- **Missing Input Validation/Sanitization**"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Service ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\t\"id\": 3,\r\n\t\"name\": \"Head Massage\",\r\n\t\"duration\": \"40\",\r\n    \"price\":\"60.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/updateservice",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"updateservice"
+							]
+						},
+						"description": "- SQL Injection\n    \n- No Input Validation/Sanitization\n    \n- Insecure Direct Object References (IDOR)\n    \n- Error Information Disclosure\n    \n- Lack of Proper Error Handling"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Service",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\t\"id\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/deletedervice",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"deletedervice"
+							]
+						},
+						"description": "- SQL Injection\n    \n- Insecure Direct Object Reference (IDOR)\n    \n- Error Handling (Sensitive Data Exposure)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointment",
+			"item": [
+				{
+					"name": "Appointment List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/getapointments",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"getapointments"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "1. SQL Injection\n    \n2. Information Disclosure\n    \n3. Insufficient Input Validation\n    \n4. Insecure Direct Object References (IDOR)"
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule appointment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userid\":\"16\",\r\n    \"ap_time\":\"2024-07-12 11:45:00\",\r\n    \"service_id\":\"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/scheduleappointment",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"scheduleappointment"
+							]
+						},
+						"description": "1. SQL Injection\n    \n2. Insecure Direct Object References (IDOR)\n    \n3. Cross-Site Scripting (XSS)\n    \n4. Insufficient Logging & Monitoring\n    \n5. Security Misconfiguration"
+					},
+					"response": []
+				},
+				{
+					"name": "Appointment CHECKINOUT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointmentid\":\"6\",\r\n    \"out_time\":\"2024-07-11 15:45:00\",\r\n    \"type\":\"out\"\r\n    // \"type\":\"in\",\r\n    // \"in_time\":\"2024-07-11 14:45:00\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/checkinout",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"checkinout"
+							]
+						},
+						"description": "1. **SQL Injection**\n    \n2. **Lack of Input Validation**\n    \n3. **Lack of Output Encoding**\n    \n4. **No Rate Limiting**\n    \n5. **Insecure Direct Object References (IDOR)**\n    \n6. **Improper Error Handling**"
+					},
+					"response": []
+				},
+				{
+					"name": "payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointmentid\":\"6\",\r\n    \"time\":\"2024-07-11 15:50:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/paymentforservice",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"paymentforservice"
+							]
+						},
+						"description": "1. SQL Injection\n    \n2. Lack of Input Validation\n    \n3. No CSRF Protection\n    \n4. Insecure Direct Object References (IDOR)\n    \n5. No Error Handling/Logging\n    \n6. Lack of Rate Limiting\n    \n7. Insufficient Logging and Monitoring"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Add Employee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Jhon Diff\",\r\n    \"storeid\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/addemployee",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"addemployee"
+							]
+						},
+						"description": "- SQL Injection\n    \n- Lack of Input Validation\n    \n- Lack of Output Encoding\n    \n- Lack of Error Handling\n    \n- Insufficient Rate Limiting"
+					},
+					"response": []
+				},
+				{
+					"name": "SET Employee Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "password123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "rider.abc@example.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "base cmlkZXIuYWJjQGV4YW1wbGUuY29tOnBhc3N3b3JkMTIz",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/setemp?id=1&name=Emp",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"setemp"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "Emp"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\": \"ac97e44f5b3a56166ad2e41e783fd18b\",\n\t\"email\": \"rider.abc@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{_server}}/verify",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"verify"
+							]
+						},
+						"description": "Vulnerable to these vulnerabilities\n\n- No rate limiting\n    \n- No race condition protection for email verification\n    \n- Lack of input validation/sanitization for `$token` and `$email`\n    \n- Potential SQL Injection vulnerability in the `SELECT` statement\n    \n- Lack of CSRF protection"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"auth_token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"rider.abc@example.com\",\n    \"password\":\"password123\",\n    \"store_name\":\"Store A\"\n}"
+						},
+						"url": {
+							"raw": "{{_server}}/login",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "- **No rate limiting**:\n    \n- **No input validation/sanitization**\n    \n- **No CSRF protection**\n    \n- **Potential SQL Injection**\n    \n- **Sensitive information leakage**\n    \n- **JWT Algorithm Confusion**\n    \n- **Debugging information in responses**"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User & Store",
+			"item": [
+				{
+					"name": "GET User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/getuser?id=6",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"getuser"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6"
+								}
+							]
+						},
+						"description": "- **Injection**\n    \n- **Broken Authentication**\n    \n- **Sensitive Data Exposure**\n    \n- **Security Misconfiguration**\n    \n- **Broken Access Control**"
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/save",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/getuserbyid",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"getuserbyid"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "82440b09dae8c598721d05f5a21f2267",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "jhos.doetest1@example.com",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "4",
+									"disabled": true
+								}
+							]
+						},
+						"description": "- SQL Injection\n    \n- Improper Error Handling\n    \n- Lack of Input Validation\n    \n- Insufficient Rate Limiting"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User & update",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\": 4,\n\t\"name\": \"Jane Doe\",\n\t\"email\": \"john.doe1@example.com\",\n    \"isAdmin\":\"true\"\n}"
+						},
+						"url": {
+							"raw": "{{_server}}/user",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Rider\",\n\t\"email\": \"rider.abc@example.com\",\n\t\"password\": \"password123\",\n\t\"store_name\": \"Store A\",\n\t\"role\": \"customer\"\n}"
+						},
+						"url": {
+							"raw": "{{_server}}/register",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "Vulnerable to these vulnerabilities\n\n- SQL Injection,\n    \n- Information Disclosure,\n    \n- Lack of Input Validation,\n    \n- No Rate Limiting,\n    \n- Potential for Email Enumeration,\n    \n- No CSRF Protection,\n    \n- No Anti-Spam Measures"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\": 4,\n\t\"name\": \"Jane Doe\",\n\t\"email\": \"john.doe1@example.com\",\n    \"isAdmin\":\"true\"\n}"
+						},
+						"url": {
+							"raw": "{{_server}}/updateUser",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"updateUser"
+							]
+						},
+						"description": "- **Injection** (SQL Injection)\n    \n- **Broken Authentication** (Potential issue with user identity verification)\n    \n- **Sensitive Data Exposure** (No encryption or proper handling of sensitive data)\n    \n- **Broken Access Control** (No validation for tenant-specific data updates)\n    \n- **Security Misconfiguration** (Lack of input validation)"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"john.doe1fdfds@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{_server}}/forgotpassword",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"forgotpassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offers",
+			"item": [
+				{
+					"name": "Add Offer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"store_id\":4,\r\n    \"service_id\":4,\r\n    \"discount_per\":5,\r\n    \"valid_till\":\"2024-07-15\",\r\n    \"per_user\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/createoffer",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"createoffer"
+							]
+						},
+						"description": "- **SQL Injection**\n    \n- **Cross-Site Scripting (XSS)**\n    \n- **Improper Error Handling**\n    \n- **Insecure Direct Object References (IDOR)**"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Offer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"offerid\":4,\r\n    \"discount_per\":10,\r\n    \"valid_till\":\"2024-07-16\",\r\n    \"per_user\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/updateoffer",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"updateoffer"
+							]
+						},
+						"description": "- **SQL Injection**\n    \n- **Broken Authentication and Session Management**\n    \n- **Insecure Direct Object Reference**\n    \n- **Improper Error Handling**\n    \n- **Insecure Data Storage**\n    \n- **Unvalidated Redirects and Forwards**"
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Offer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"offerid\":4,\r\n    \"discount_per\":10,\r\n    \"valid_till\":\"2024-07-16\",\r\n    \"per_user\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/offervalidate?offercode=1337",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"offervalidate"
+							],
+							"query": [
+								{
+									"key": "offercode",
+									"value": "1337"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Others",
+			"item": [
+				{
+					"name": "__ping ip",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/pingip?command=1.2.3.4; ls -la",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"pingip"
+							],
+							"query": [
+								{
+									"key": "command",
+									"value": "1.2.3.4; ls -la"
+								}
+							]
+						},
+						"description": "1. **Command Injection**\n    \n2. **Improper Input Validation**\n    \n3. **Information Disclosure**\n    \n4. Insecure Direct Object References (IDOR)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET content by type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/fetchurl?url=https://laravel.com/docs/8.x/collections%23method-last&type=bycontent&type=bycurl&type=byfile&type=byfopen&type=bysocket",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"fetchurl"
+							],
+							"query": [
+								{
+									"key": "url",
+									"value": "https://laravel.com/docs/8.x/collections%23method-last"
+								},
+								{
+									"key": "type",
+									"value": "bycontent"
+								},
+								{
+									"key": "type",
+									"value": "bycurl"
+								},
+								{
+									"key": "type",
+									"value": "byfile"
+								},
+								{
+									"key": "type",
+									"value": "byfopen"
+								},
+								{
+									"key": "type",
+									"value": "bysocket"
+								}
+							]
+						},
+						"description": "- **Server-Side Request Forgery (SSRF)**\n    \n- **Improper Input Validation**\n    \n- **Information Disclosure**\n    \n- **Insecure Direct Object References (IDOR)**"
+					},
+					"response": []
+				},
+				{
+					"name": "Evaluate data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/exelliate?code=phpinfo();",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"exelliate"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "phpinfo();"
+								}
+							]
+						},
+						"description": "1. **Code Injection**\n    \n2. **Broken Authentication**\n    \n3. **Sensitive Data Exposure**\n    \n4. **Security Misconfiguration**"
+					},
+					"response": []
+				},
+				{
+					"name": "basic operation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/new-operation?input=anything' OR '1'='1",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"new-operation"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "anything' OR '1'='1"
+								}
+							]
+						},
+						"description": "1. Insecure Polyfill for `json_encode`\n    \n2. SQL Injection\n    \n3. Improper Error Handling\n    \n4. Lack of Input Validation\n    \n5. Insecure Database Connection\n    \n6. Cross-Site Scripting (XSS)\n    \n7. Prototype Pollution (it affectes JavaScript applications)\n    \n8. Denial of Service (DoS)\n    \n9. Code Injection"
+					},
+					"response": []
+				},
+				{
+					"name": "simulate-operation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/simulate-operation?input='/%%0a0aSet-Cookie:crlf'",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"simulate-operation"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "'/%%0a0aSet-Cookie:crlf'"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "data manipulation ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/handletask?command=ls",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"handletask"
+							],
+							"query": [
+								{
+									"key": "command",
+									"value": "ls"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkreference",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/checkreference?domain=haircutkart.com;ls%20-la",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"checkreference"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "haircutkart.com;ls%20-la"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fuseModule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/fusemodule?file=dummy",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"fusemodule"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": "dummy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "blendfeature",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/blendfeature?file=dummy.txt&content=Hello Developer",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"blendfeature"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": "dummy.txt"
+								},
+								{
+									"key": "content",
+									"value": "Hello Developer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CheckOne",
+					"request": {
+						"method": "TRACE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"john.doe1fdfds@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{_server}}/checkone",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"checkone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Some",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/checksome?action=get_user_info&user_id=1",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"checksome"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "get_user_info"
+								},
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Entities",
+			"item": [
+				{
+					"name": "Manage Entities",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/manageentity",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"manageentity"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "get_user_info",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Basic Entities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/basicentity?name=calue",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"basicentity"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "calue"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Manage-URL",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/manage-url",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"manage-url"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "calue",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Manage-Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/manage-info",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"manage-info"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "calue",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Manage-Access",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{_server}}/manage-access",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"manage-access"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Manage-userdata",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/showuser?id=3",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"showuser"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Manage-Showuserkey",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Custom-Token",
+								"value": "secretTokenuser15",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Custom-Token",
+								"value": "secretTokenuser7",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/showuserkey",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"showuserkey"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BFS",
+			"item": [
+				{
+					"name": "Update Employee Name G2ALL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/updateemployee?id=1&name=Emp",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"updateemployee"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "Emp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee Name P2ALL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/updateemployee?id=1&name=Emp",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"updateemployee"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "Emp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee Name PT2ALL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/updateemployee?id=1&name=Emp",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"updateemployee"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "Emp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee Name PCT2ALL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/updateemployee?id=1&name=Emp",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"updateemployee"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "Emp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee Name DEL2ALL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{_server}}/updateemployee?id=1&name=Emp",
+							"host": [
+								"{{_server}}"
+							],
+							"path": [
+								"updateemployee"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "Emp"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "_server",
+			"value": "https://haircutkart.com/routes",
+			"type": "string"
+		},
+		{
+			"key": "_server",
+			"value": "http://localhost/core/",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
