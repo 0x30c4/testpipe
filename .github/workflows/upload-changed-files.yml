@@ -26,7 +26,8 @@ jobs:
       id: changed-files
       run: |
         # Identify changed .json files in the latest commit
-        git diff-tree --no-commit-id --name-only -r HEAD | grep '\.json' > changed_files.txt
+        # git diff-tree --no-commit-id --name-only -r HEAD | grep '\.json' > changed_files.txt
+        echo Haircut.json > changed_files.txt
         changedFiles=$(cat changed_files.txt | grep -v '^$')
         echo $changedFiles
 
