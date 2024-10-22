@@ -28,6 +28,8 @@ jobs:
         git diff-tree --no-commit-id --name-only -r HEAD | Findstr \.json > changed_files.txt
         $changedFiles = Get-Content -Path changed_files.txt | Where-Object { $_ -ne '' }
         # If no .json files are changed, exit successfully
+        #
+        echo "$changedFiles"
         if (-not $changedFiles) {
           echo "No .json files changed, exiting."
           exit 0
