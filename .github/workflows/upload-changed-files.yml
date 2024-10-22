@@ -1,4 +1,3 @@
-
 name: Upload JSON Files
 
 on:
@@ -8,7 +7,7 @@ on:
 
 jobs:
   upload-json-files:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       GIT_REPO: https://github.com/0x30c4/testpipe
       UPLOAD_API_URL: http://178.128.58.203:9090/v1/webHook
@@ -25,53 +24,48 @@ jobs:
       id: changed-files
       run: |
         # Identify changed .json files in the latest commit
-        git diff-tree --no-commit-id --name-only -r HEAD | Findstr \.json > changed_files.txt
-        $changedFiles = Get-Content -Path changed_files.txt | Where-Object { $_ -ne '' }
+        git diff-tree --no-commit-id --name-only -r HEAD | grep '\.json' > changed_files.txt
+        changedFiles=$(cat changed_files.txt | grep -v '^$')
+
         # If no .json files are changed, exit successfully
-        #
-        git diff-tree --no-commit-id --name-only -r HEAD
-        echo "$changedFiles"
-        if (-not $changedFiles) {
+        if [[ -z "$changedFiles" ]]; then
           echo "No .json files changed, exiting."
           exit 0
-        }
-        echo "JSON Files changed: $($changedFiles -join ', ')"
-        echo "CHANGED_FILES=$($changedFiles -join '`n')" >> $env:GITHUB_ENV
-        echo "$CHANGED_FILES"
+        fi
+
+        echo "JSON Files changed: $changedFiles"
+        echo "CHANGED_FILES=$changedFiles" >> $GITHUB_ENV
 
     - name: Process Changed JSON Files
       run: |
-        $changedFiles = $env:CHANGED_FILES -split "`n"
-        foreach ($file in $changedFiles) {
-          if (Test-Path -Path $file) {
+        changedFiles=$(echo "$CHANGED_FILES" | tr ' ' '\n')
+        for file in $changedFiles; do
+          if [ -f "$file" ]; then
             echo "Processing file: $file"
-          } else {
+          else
             echo "File not found: $file"
-          }
-        }
+          fi
+        done
 
     - name: Upload Changed JSON Files
       run: |
-        $changedFiles = $env:CHANGED_FILES -split "`n"
-        foreach ($file in $changedFiles) {
-          if (Test-Path -Path $file) {
+        changedFiles=$(echo "$CHANGED_FILES" | tr ' ' '\n')
+        for file in $changedFiles; do
+          if [ -f "$file" ]; then
             echo "Uploading file: $file"
-            $response = Invoke-RestMethod `
-              -Uri $env:UPLOAD_API_URL `
-              -Headers @{
-                'Accept' = 'application/json, text/plain, */*';
-                'Authorization' = "Bearer $env:APPKEYTOKEN"
-              } `
-              -Method POST `
-              -Form @{ 'filename' = 'file.json'; 'file' = Get-Item -Path $file }
+            response=$(curl --location "${UPLOAD_API_URL}" \
+              --header "Accept: application/json, text/plain, */*" \
+              --header "Authorization: Bearer ${APPKEYTOKEN}" \
+              --form "filename=file.json" \
+              --form "file=@${file}")
             echo "Upload response: $response"
-          } else {
+          else
             echo "File not found: $file"
-          }
-        }
+          fi
+        done
 
     - name: Post-processing
       run: echo "Post-processing steps"
 
     - name: Clean workspace
-      run: Remove-Item -Recurse -Force *
+      run: rm -rf *
