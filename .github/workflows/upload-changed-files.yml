@@ -34,6 +34,7 @@ jobs:
         }
         echo "JSON Files changed: $($changedFiles -join ', ')"
         echo "CHANGED_FILES=$($changedFiles -join '`n')" >> $env:GITHUB_ENV
+        echo "$CHANGED_FILES"
 
     - name: Process Changed JSON Files
       run: |
