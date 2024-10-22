@@ -1,4 +1,5 @@
-name: Upload Changed Files
+
+name: Upload JSON Files
 
 on:
   push:
@@ -6,7 +7,7 @@ on:
       - main
 
 jobs:
-  upload-changed-files:
+  upload-json-files:
     runs-on: windows-latest
     env:
       GIT_REPO: https://github.com/0x30c4/testpipe
@@ -20,27 +21,34 @@ jobs:
     - name: Set up Git
       run: git config --global --add safe.directory "${{ github.workspace }}"
 
-    - name: Identify Changed Files
+    - name: Identify Changed .json Files
       id: changed-files
       run: |
-        git diff-tree --no-commit-id --name-only -r HEAD | grep "json" > changed_files.txt
+        # Identify changed .json files in the latest commit
+        git diff-tree --no-commit-id --name-only -r HEAD | Findstr \.json > changed_files.txt
         $changedFiles = Get-Content -Path changed_files.txt | Where-Object { $_ -ne '' }
-        if (-not $changedFiles) { throw "No files changed in the latest commit!" }
-        echo "Files changed: $($changedFiles -join ', ')"
+
+        # If no .json files are changed, exit successfully
+        if (-not $changedFiles) {
+          echo "No .json files changed, exiting."
+          exit 0
+        }
+
+        echo "JSON Files changed: $($changedFiles -join ', ')"
         echo "CHANGED_FILES=$($changedFiles -join '`n')" >> $env:GITHUB_ENV
 
-    - name: Process Changed Files
+    - name: Process Changed JSON Files
       run: |
         $changedFiles = $env:CHANGED_FILES -split "`n"
         foreach ($file in $changedFiles) {
           if (Test-Path -Path $file) {
-            echo "File found: $file"
+            echo "Processing file: $file"
           } else {
             echo "File not found: $file"
           }
         }
 
-    - name: Upload Changed Files
+    - name: Upload Changed JSON Files
       run: |
         $changedFiles = $env:CHANGED_FILES -split "`n"
         foreach ($file in $changedFiles) {
