@@ -23,7 +23,7 @@ jobs:
     - name: Identify Changed Files
       id: changed-files
       run: |
-        git diff-tree --no-commit-id --name-only -r HEAD > changed_files.txt
+        git diff-tree --no-commit-id --name-only -r HEAD | grep "json" > changed_files.txt
         $changedFiles = Get-Content -Path changed_files.txt | Where-Object { $_ -ne '' }
         if (-not $changedFiles) { throw "No files changed in the latest commit!" }
         echo "Files changed: $($changedFiles -join ', ')"
