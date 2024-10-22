@@ -1,0 +1,67 @@
+name: Upload Changed Files
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload-changed-files:
+    runs-on: windows-latest
+    env:
+      GIT_REPO: https://github.com/0x30c4/testpipe
+      UPLOAD_API_URL: http://178.128.58.203:9090/v1/webHook
+      APPKEYTOKEN: hello
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Git
+      run: git config --global --add safe.directory "${{ github.workspace }}"
+
+    - name: Identify Changed Files
+      id: changed-files
+      run: |
+        git diff-tree --no-commit-id --name-only -r HEAD > changed_files.txt
+        $changedFiles = Get-Content -Path changed_files.txt | Where-Object { $_ -ne '' }
+        if (-not $changedFiles) { throw "No files changed in the latest commit!" }
+        echo "Files changed: $($changedFiles -join ', ')"
+        echo "CHANGED_FILES=$($changedFiles -join '`n')" >> $env:GITHUB_ENV
+
+    - name: Process Changed Files
+      run: |
+        $changedFiles = $env:CHANGED_FILES -split "`n"
+        foreach ($file in $changedFiles) {
+          if (Test-Path -Path $file) {
+            echo "File found: $file"
+          } else {
+            echo "File not found: $file"
+          }
+        }
+
+    - name: Upload Changed Files
+      run: |
+        $changedFiles = $env:CHANGED_FILES -split "`n"
+        foreach ($file in $changedFiles) {
+          if (Test-Path -Path $file) {
+            echo "Uploading file: $file"
+            $response = Invoke-RestMethod `
+              -Uri $env:UPLOAD_API_URL `
+              -Headers @{
+                'Accept' = 'application/json, text/plain, */*';
+                'Authorization' = "Bearer $env:APPKEYTOKEN"
+              } `
+              -Method POST `
+              -Form @{ 'filename' = 'file.json'; 'file' = Get-Item -Path $file }
+            echo "Upload response: $response"
+          } else {
+            echo "File not found: $file"
+          }
+        }
+
+    - name: Post-processing
+      run: echo "Post-processing steps"
+
+    - name: Clean workspace
+      run: Remove-Item -Recurse -Force *
