@@ -27,13 +27,11 @@ jobs:
         # Identify changed .json files in the latest commit
         git diff-tree --no-commit-id --name-only -r HEAD | Findstr \.json > changed_files.txt
         $changedFiles = Get-Content -Path changed_files.txt | Where-Object { $_ -ne '' }
-
         # If no .json files are changed, exit successfully
         if (-not $changedFiles) {
           echo "No .json files changed, exiting."
           exit 0
         }
-
         echo "JSON Files changed: $($changedFiles -join ', ')"
         echo "CHANGED_FILES=$($changedFiles -join '`n')" >> $env:GITHUB_ENV
 
