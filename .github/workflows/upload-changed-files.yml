@@ -26,6 +26,7 @@ jobs:
         # Identify changed .json files in the latest commit
         git diff-tree --no-commit-id --name-only -r HEAD | grep '\.json' > changed_files.txt
         changedFiles=$(cat changed_files.txt | grep -v '^$')
+        echo $changedFiles
 
         # If no .json files are changed, exit successfully
         if [[ -z "$changedFiles" ]]; then
