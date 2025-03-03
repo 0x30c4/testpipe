@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GIT_REPO: https://github.com/0x30c4/testpipe
-      UPLOAD_API_URL: http://178.128.58.203:9090/v1/webHook
+      UPLOAD_API_URL: http://159.223.68.108:9091/v1/webHook
       APPKEYTOKEN: hello
 
     steps:
